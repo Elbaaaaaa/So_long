@@ -26,10 +26,10 @@ $(NAME): $(OBJS) $(LIBFT) $(MLX)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(MLX) $(MLX_FLAGS)
 
 $(LIBFT):
-	$(MAKE) --always-make -C $(LIBFT_DIR)
+	$(MAKE) -C $(LIBFT_DIR)
 
 $(MLX):
-	$(MAKE) --always-make -C $(MLX_DIR)
+	$(MAKE) -C $(MLX_DIR)
 
 .c.o:
 	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDE)

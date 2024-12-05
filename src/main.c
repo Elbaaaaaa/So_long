@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:56:28 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/05 17:37:48 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/05 18:41:58 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	parsing(int argc, char **argv, t_parse *parse)
 
 int	parse_map(t_parse *parse)
 {
-	if (!check_map_rectangle(parse) 
+	if (!check_map_rectangle(parse)
 		|| !check_map_edges(parse)
 		|| !check_map_content(parse)
 		|| !check_map_elements(parse))
@@ -68,11 +68,11 @@ int	main(int argc, char **argv)
 	int		j;
 
 	if (!parsing(argc, argv, &parse))
-		return (write(1, "Error_CACA\n", 12), 0);
+		return (write(1, "Error, file not found\n", 23), 0);
 	if (!check_map(&parse))
-		return (write(1, "Error_KAKA\n", 12), 0);
+		return (write(1, "Error, map not loaded correctly\n", 23), 0);
 	if (!parse.map || !parse_map(&parse))
-		return (write(1, "Error_COULANTE\n", 15), 0);
+		return (write(1, "Error, map not valid\n", 22), 0);
 	i = 0;
 	j = 0;
 	while (i < parse.lines)
