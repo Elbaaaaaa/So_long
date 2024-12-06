@@ -15,7 +15,9 @@ NAME = so_long
 
 SRCS = src/main.c \
 		src/parsing.c \
-		src/so_long_utils.c
+		src/so_long_utils.c \
+		src/pathfinding.c \
+		src/render.c \
 
 OBJS = $(SRCS:.c=.o)
 

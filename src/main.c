@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:56:28 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/05 18:41:58 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/06 19:50:50 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,17 @@ int	parsing(int argc, char **argv, t_parse *parse)
 
 int	parse_map(t_parse *parse)
 {
-	if (!check_map_rectangle(parse)
-		|| !check_map_edges(parse)
-		|| !check_map_content(parse)
-		|| !check_map_elements(parse))
+	if (!check_map_rectangle(parse))
+		return (0);
+	if (!check_map_edges(parse))
+		return (0);
+	if (!check_map_content(parse))
+		return (0);
+	if (!check_map_elements(parse))
+		return (0);
+	parse->visited = dup_map(*parse);
+	player_pos(parse);
+	if (!pathfinding(parse, parse->player_x, parse->player_y))
 		return (0);
 	return (1);
 }
@@ -64,8 +71,7 @@ int	parse_map(t_parse *parse)
 int	main(int argc, char **argv)
 {
 	t_parse	parse;
-	int		i;
-	int		j;
+	t_game	game;
 
 	if (!parsing(argc, argv, &parse))
 		return (write(1, "Error, file not found\n", 23), 0);
@@ -73,18 +79,14 @@ int	main(int argc, char **argv)
 		return (write(1, "Error, map not loaded correctly\n", 23), 0);
 	if (!parse.map || !parse_map(&parse))
 		return (write(1, "Error, map not valid\n", 22), 0);
-	i = 0;
-	j = 0;
-	while (i < parse.lines)
-	{
-		j = 0;
-		while (parse.map[i][j])
-		{
-			write(1, &parse.map[i][j], 1);
-			j++;
-		}
-		free(parse.map[i]);
-		i++;
-	}
+	init(&game, &parse);
+	init_window(&game);
+	put_walls(&game);
+	put_back(&game);
+	put_player(&game);
+	put_collect(&game);
+	mlx_loop(game.mlx);
+	free(parse.visited);
 	free(parse.map);
+	return (0);
 }

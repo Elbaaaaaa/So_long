@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:35:35 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/05 18:24:42 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/06 15:11:37 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,9 @@ int	check_map_elements(t_parse *parse)
 		while (parse->map[i][j])
 		{
 			if (parse->map[i][j] == 'P')
+			{
 				parse->player++;
+			}
 			if (parse->map[i][j] == 'E')
 				parse->exit++;
 			if (parse->map[i][j] == 'C')
@@ -148,7 +150,7 @@ int	check_map_elements(t_parse *parse)
 		}
 		i++;
 	}
-	if (parse->player != 1 || parse->exit != 1 || parse->collect < 1)
+	if (parse->player != 1 || parse->exit != 1 || parse->collect <= 1)
 		return (0);
 	return (1);
 }
