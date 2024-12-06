@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:56:28 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/06 19:50:50 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/07 00:03:07 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int	main(int argc, char **argv)
 	put_back(&game);
 	put_player(&game);
 	put_collect(&game);
+	mlx_key_hook(game.win, key_hook, &game);
 	mlx_loop(game.mlx);
 	free(parse.visited);
 	free(parse.map);

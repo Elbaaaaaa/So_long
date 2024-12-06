@@ -18,6 +18,7 @@ SRCS = src/main.c \
 		src/so_long_utils.c \
 		src/pathfinding.c \
 		src/render.c \
+		src/player.c \
 
 OBJS = $(SRCS:.c=.o)
 

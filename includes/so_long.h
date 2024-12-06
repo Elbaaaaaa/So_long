@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:41:48 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/06 19:50:41 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/06 23:09:00 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,9 @@ int		map_width(t_parse *parse);
 void	put_back(t_game *game);
 void	put_player(t_game *game);
 void	put_collect(t_game *game);
+void 	mouve_player(t_game *game);
+int		key_hook(int keycode, t_game *game);
+int		check_move(t_game *game, int x, int y);
+void	move_player(t_game *game, int x, int y);
 
 #endif

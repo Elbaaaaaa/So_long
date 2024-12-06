@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:32:06 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/06 19:59:53 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/07 00:00:02 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	put_back(t_game *game)
 	mlx_destroy_image(game->mlx, back.img);
 }
 
+//if the player press z q s d the initial position of the player will be a back
 void	put_player(t_game *game)
 {
 	t_texture	player;

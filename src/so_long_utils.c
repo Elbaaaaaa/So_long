@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 12:55:02 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/06 19:57:08 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/06 23:26:39 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,29 @@ int	map_lines(t_parse *parse)
 	parse->lines = num_lines;
 	close(parse->fd);
 	return (num_lines);
+}
+
+int	map_coins(t_parse *parse, t_game *game)
+{
+	int		i;
+	int		j;
+	int		coins;
+
+	i = 0;
+	coins = 0;
+	while (parse->map[i])
+	{
+		j = 0;
+		while (parse->map[i][j])
+		{
+			if (parse->map[i][j] == 'C')
+				coins++;
+			j++;
+		}
+		i++;
+	}
+	game->collect = coins;
+	return (coins);
 }
 
 int	map_width(t_parse *parse)
@@ -75,7 +98,7 @@ void	init(t_game *game, t_parse *parse)
 	game->map.width = (parse->width - 1) * 64;
 	if (game->map.width > 1080)
 		return (write(1, "Error, map too big\n", 19), exit(1));
-	game->collect = parse->collect;
+	game->collect = map_coins(parse, game);
 	game->exit = parse->exit;
 	game->player.x = parse->player_x;
 	game->player.y = parse->player_y;
