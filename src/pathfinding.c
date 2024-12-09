@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 12:02:16 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/06 19:29:14 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/09 16:14:07 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,12 @@ int	pathfinding(t_parse *parse, int i, int j)
 		return (0);
 	if (parse->exit == 0 && parse->collect == 0)
 		return (1);
-	if (parse->visited[i][j] == '1' || parse->visited[i][j] == 'X')
+	if (parse->visited[i][j] == 'E')
+		parse->exit--;
+	if (parse->visited[i][j] == '1' || parse->visited[i][j] == 'X' || parse->visited[i][j] == 'E')
 		return (0);
 	if (parse->visited[i][j] == 'C')
 		parse->collect--;
-	if (parse->visited[i][j] == 'E')
-		parse->exit--;
 	parse->visited[i][j] = 'X';
 	if (pathfinding(parse, i - 1, j))
 		return (1);

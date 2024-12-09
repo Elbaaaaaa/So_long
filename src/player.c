@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 22:50:20 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/06 23:59:35 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/09 16:17:42 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int check_move(t_game *game, int x, int y)
     {
         if (game->collect == 0)
             exit(1);
+        return (0);
     }
     if (game->map.map[x][y] == 'C')
     {

@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:32:06 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/07 00:00:02 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/09 16:11:51 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	put_back(t_game *game)
 		j = 0;
 		while (j < game->map.width / 64)
 		{
-			if (game->map.map[i][j] == '0')
+			if (game->map.map[i][j] == '0' || game->map.map[i][j] == 'P')
 				mlx_put_image_to_window(game->mlx, game->win, back.img, j * 64,
 					i * 64);
 			j++;
