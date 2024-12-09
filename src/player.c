@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 22:50:20 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/09 16:17:42 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/09 16:21:52 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int check_move(t_game *game, int x, int y)
         game->map.map[x][y] = '0';
         put_back(game);
     }
-    printf("collect: %d\n", game->collect);
     return (1);
 }
 
@@ -44,6 +43,9 @@ void move_player(t_game *game, int x, int y)
         game->player.x = x;
         game->player.y = y;
         game->player.moves++;
+        write(1, "Moves: ", 7);
+        ft_putnbr_fd(game->player.moves, 1);
+        write(1, "\n", 1);
         mouve_player(game);
     }
 }

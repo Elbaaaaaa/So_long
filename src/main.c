@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:56:28 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/07 00:03:07 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/09 16:25:39 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,7 @@ int	main(int argc, char **argv)
 		return (write(1, "Error, map not valid\n", 22), 0);
 	init(&game, &parse);
 	init_window(&game);
-	put_walls(&game);
-	put_back(&game);
-	put_player(&game);
-	put_collect(&game);
+	init_textures(&game);
 	mlx_key_hook(game.win, key_hook, &game);
 	mlx_loop(game.mlx);
 	free(parse.visited);
