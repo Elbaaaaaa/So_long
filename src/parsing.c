@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:35:35 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/06 15:11:37 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/10 18:48:28 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	check_map(t_parse *parse)
 }
 
 // check if the map is a rectangle
-// if the length of the first line is different from the length of the other 
-//lines the map is not a rectangle return 0
+// if the length of the first line is different from the length of the other
+// lines the map is not a rectangle return 0
 // a line finish's with '\n' so the length of the line
 // is the length of the string
 int	check_map_rectangle(t_parse *parse)
@@ -139,9 +139,7 @@ int	check_map_elements(t_parse *parse)
 		while (parse->map[i][j])
 		{
 			if (parse->map[i][j] == 'P')
-			{
 				parse->player++;
-			}
 			if (parse->map[i][j] == 'E')
 				parse->exit++;
 			if (parse->map[i][j] == 'C')
@@ -150,7 +148,8 @@ int	check_map_elements(t_parse *parse)
 		}
 		i++;
 	}
-	if (parse->player != 1 || parse->exit != 1 || parse->collect <= 1)
+	parse->game.collect = parse->collect;
+	if (parse->player != 1 || parse->exit != 1 || parse->collect < 1)
 		return (0);
 	return (1);
 }

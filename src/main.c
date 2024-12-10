@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:56:28 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/09 16:25:39 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/10 18:55:07 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ int	check_suffix(char *str)
 	i = 0;
 	while (str[i])
 		i++;
-	if (str[i - 1] != 'r'
-		|| str[i - 2] != 'e'
-		|| str[i - 3] != 'b'
+	if (str[i - 1] != 'r' || str[i - 2] != 'e' || str[i - 3] != 'b'
 		|| str[i - 4] != '.')
 		return (0);
 	return (1);
@@ -54,14 +52,16 @@ int	parsing(int argc, char **argv, t_parse *parse)
 int	parse_map(t_parse *parse)
 {
 	if (!check_map_rectangle(parse))
-		return (0);
+		return (free_tabs(parse->map), 0);
 	if (!check_map_edges(parse))
-		return (0);
+		return (free_tabs(parse->map), 0);
 	if (!check_map_content(parse))
-		return (0);
+		return (free_tabs(parse->map), 0);
 	if (!check_map_elements(parse))
-		return (0);
-	parse->visited = dup_map(*parse);
+		return (free_tabs(parse->map), 0);
+	parse->game.map.visited = dup_map(*parse);
+	if (!parse->game.map.visited)
+		return (free_tabs(parse->map), 0);
 	player_pos(parse);
 	if (!pathfinding(parse, parse->player_x, parse->player_y))
 		return (0);
@@ -84,7 +84,5 @@ int	main(int argc, char **argv)
 	init_textures(&game);
 	mlx_key_hook(game.win, key_hook, &game);
 	mlx_loop(game.mlx);
-	free(parse.visited);
-	free(parse.map);
 	return (0);
 }

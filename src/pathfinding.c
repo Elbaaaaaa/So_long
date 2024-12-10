@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 12:02:16 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/09 16:14:07 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/10 18:48:55 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ char	**dup_map(t_parse parse)
 		{
 			while (i > 0)
 			{
-				free(map[i]);
-				i--;
+				free(map[--i]);
 			}
 			free(map);
 			return (NULL);
@@ -65,8 +64,8 @@ char	**dup_map(t_parse parse)
 	return (map);
 }
 
-// i will start from the player position and check 
-//if there is a path to the exit
+// i will start from the player position and check
+// if there is a path to the exit
 // i will look in foor directions up, down, left, right
 // if i find a wall i dont recurse on it, i recurse on everythig else
 // if i find the exit i return 1
@@ -74,17 +73,19 @@ char	**dup_map(t_parse parse)
 int	pathfinding(t_parse *parse, int i, int j)
 {
 	if (i < 0 || j < 0 || i >= parse->lines
-		|| j >= ft_strlen(parse->visited[0]))
+		|| j >= ft_strlen(parse->game.map.visited[0]))
 		return (0);
-	if (parse->exit == 0 && parse->collect == 0)
-		return (1);
-	if (parse->visited[i][j] == 'E')
+	if (parse->exit == 0 && parse->game.collect == 0)
+		return (free_tabs(parse->game.map.visited), 1);
+	if (parse->game.map.visited[i][j] == 'E')
 		parse->exit--;
-	if (parse->visited[i][j] == '1' || parse->visited[i][j] == 'X' || parse->visited[i][j] == 'E')
+	if (parse->game.map.visited[i][j] == '1'
+		|| parse->game.map.visited[i][j] == 'X'
+		|| (parse->game.map.visited[i][j] == 'E' && parse->exit > 0))
 		return (0);
-	if (parse->visited[i][j] == 'C')
-		parse->collect--;
-	parse->visited[i][j] = 'X';
+	if (parse->game.map.visited[i][j] == 'C')
+		parse->game.collect--;
+	parse->game.map.visited[i][j] = 'X';
 	if (pathfinding(parse, i - 1, j))
 		return (1);
 	if (pathfinding(parse, i + 1, j))

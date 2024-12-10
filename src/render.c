@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:32:06 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/09 16:11:51 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/10 18:49:09 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	put_back(t_game *game)
 	mlx_destroy_image(game->mlx, back.img);
 }
 
-//if the player press z q s d the initial position of the player will be a back
+// if the player press z q s d the initial position of the player will be a back
 void	put_player(t_game *game)
 {
 	t_texture	player;
@@ -54,7 +54,7 @@ void	put_player(t_game *game)
 	mlx_destroy_image(game->mlx, player.img);
 }
 
-void put_exit(t_game *game)
+void	put_exit(t_game *game)
 {
 	t_texture	exit;
 	int			i;
@@ -97,8 +97,8 @@ void	put_collect(t_game *game)
 		while (j < game->map.width / 64)
 		{
 			if (game->map.map[i][j] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win, collect.img,
-					j * 64, i * 64);
+				mlx_put_image_to_window(game->mlx, game->win, collect.img, j
+					* 64, i * 64);
 			j++;
 		}
 		i++;

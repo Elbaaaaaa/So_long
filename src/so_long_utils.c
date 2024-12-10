@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 12:55:02 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/06 23:26:39 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/10 18:58:30 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	map_lines(t_parse *parse)
 
 int	map_coins(t_parse *parse, t_game *game)
 {
-	int		i;
-	int		j;
-	int		coins;
+	int	i;
+	int	j;
+	int	coins;
 
 	i = 0;
 	coins = 0;
@@ -57,9 +57,9 @@ int	map_coins(t_parse *parse, t_game *game)
 
 int	map_width(t_parse *parse)
 {
-	int		i;
-	int		len;
-	int		max_len;
+	int	i;
+	int	len;
+	int	max_len;
 
 	i = 0;
 	max_len = 0;
@@ -79,8 +79,6 @@ void	init_window(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		exit(1);
-	if (game->map.width <= 0 || game->map.height <= 0)
-		exit(1);
 	game->win = mlx_new_window(game->mlx, game->map.width, game->map.height,
 			"so_long");
 	if (!game->win)
@@ -94,10 +92,12 @@ void	init(t_game *game, t_parse *parse)
 	parse->width = map_width(parse);
 	game->map.height = (parse->lines * 64);
 	if (game->map.height > 1920)
-		return (write(1, "Error, map too big\n", 19), exit(1));
+		return (write(1, "Error, map too big\n", 19), free_tabs(parse->map),
+			exit(1));
 	game->map.width = (parse->width - 1) * 64;
 	if (game->map.width > 1080)
-		return (write(1, "Error, map too big\n", 19), exit(1));
+		return (write(1, "Error, map too big\n", 19), free_tabs(parse->map),
+			exit(1));
 	game->collect = map_coins(parse, game);
 	game->exit = parse->exit;
 	game->player.x = parse->player_x;
