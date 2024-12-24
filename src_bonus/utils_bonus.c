@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:26:05 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/23 14:30:51 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/24 14:59:47 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void	init_textures(t_game *game)
 {
+	game->clock = 0;
 	put_walls(game);
 	put_back(game);
+	idle_enemy(game);
+	put_enemy(game);
 	put_player(game);
 	put_collect(game);
 	put_exit(game);

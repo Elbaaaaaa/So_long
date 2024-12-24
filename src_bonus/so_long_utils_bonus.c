@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*   so_long_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 12:55:02 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/10 19:39:58 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/24 14:04:13 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,7 @@ void	init(t_game *game, t_parse *parse)
 	game->player.exit = 0;
 	game->player.hp = 0;
 	game->map.map = parse->map;
+	if (init_enemy(game) == 0)
+		return (write(1, "Error, enemy not initialized\n", 29), free_tabs(parse->map),
+			exit(1));
 }

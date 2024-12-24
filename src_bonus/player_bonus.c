@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   player_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 22:50:20 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/23 14:03:45 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/24 17:36:30 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	check_move(t_game *game, int x, int y)
 		return (0);
 	if (game->map.map[x][y] == 'E')
 	{
-		if (game->collect == 0)
+		if (game->player.collect == 0)
 			end_game(game);
 		return (0);
 	}
 	if (game->map.map[x][y] == 'C')
 	{
-		game->collect--;
+		game->player.collect--;
 		game->map.map[x][y] = '0';
 		put_back(game);
 	}

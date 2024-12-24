@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:56:28 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/23 14:36:33 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/23 15:31:32 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int	main(int argc, char **argv)
 	init_window(&game);
 	init_textures(&game);
 	mlx_key_hook(game.win, key_hook, &game);
-	mlx_loop_hook(game.mlx, idle_anim, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

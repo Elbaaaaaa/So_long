@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:35:35 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/10 18:48:28 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/24 17:20:31 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,8 @@ int	check_map_content(t_parse *parse)
 		{
 			if (parse->map[i][j] != '0' && parse->map[i][j] != '1'
 				&& parse->map[i][j] != 'P' && parse->map[i][j] != 'E'
-				&& parse->map[i][j] != 'C' && parse->map[i][j] != '\n')
+				&& parse->map[i][j] != 'C' && parse->map[i][j] != 'D'
+				&& parse->map[i][j] != '\n')
 				return (0);
 			j++;
 		}
