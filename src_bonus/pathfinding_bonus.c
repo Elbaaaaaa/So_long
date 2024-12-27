@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 12:02:16 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/23 19:04:27 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/25 11:31:24 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	pathfinding(t_parse *parse, int i, int j)
 		parse->exit--;
 	if (parse->game.map.visited[i][j] == '1'
 		|| parse->game.map.visited[i][j] == 'X'
-		|| parse->game.map.visited[i][j] == 'D' 
+		|| parse->game.map.visited[i][j] == 'D'
 		||(parse->game.map.visited[i][j] == 'E' && parse->exit > 0))
 		return (0);
 	if (parse->game.map.visited[i][j] == 'C')

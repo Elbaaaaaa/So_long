@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:04:44 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/24 16:58:15 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/27 14:59:02 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,27 @@ void	print_moves(t_game *game)
 
 	moves = ft_itoa(game->player.moves);
 	mlx_string_put(game->mlx, game->win, 20, 20, 0x00FF0000, moves);
-	put_walls(game);
 	free(moves);
 }
 
 int hooks(t_game *game)
 {
-	idle_anim(game);
-	put_idle(game);
-	print_moves(game);
-	idle_enemy(game);
+	game->fps.frames++;
+	if (game->fps.frames == 1000)
+		game->fps.frames = 0;
+	if (game->fps.frames % 70 == 0)
+	{
+		idle_anim(game);
+ 		put_idle(game);
+    	print_moves(game);
+		idle_enemy(game);
+	}
 	put_enemy(game);
-	usleep(100000);
-	return (0);
+	printf("FPS: %d\n", game->fps.frames);
+	if (game->fps.frames % 1000 == 0)
+	{
+		put_walls(game);
+		move_enemy(game);
+	}
+    return (0);
 }

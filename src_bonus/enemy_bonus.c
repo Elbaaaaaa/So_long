@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 18:39:06 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/24 14:40:27 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/27 15:02:39 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,13 @@ void	idle_enemy(t_game *game)
 
 
 // animate the enemy idle position
-// checks the map and put an enemy in every position where there is an enemy ('D')
-//D = Danger
+// go trough the linked list of enemies and put the enemy on the map
 void	put_enemy(t_game *game)
 {
 	t_texture	enemy;
 	int			i;
 	int			j;
-
+	
 	enemy.path = game->enemy.textures.path;
 	enemy.img = mlx_xpm_file_to_image(game->mlx, enemy.path, &enemy.width,
 			&enemy.height);
@@ -85,47 +84,93 @@ void	put_enemy(t_game *game)
 // initialize the enemy position, in a linked list of enemies
 int	init_enemy(t_game *game)
 {
-	int i;
-	t_enemy	*enemy;
+    int i;
+    t_enemy	*enemy;
 
-	i  = enemy_nb(game->map.map);
-	game->nb_enemy = i;
-	while (i > 0)
-	{
-		enemy = malloc(sizeof(*enemy));
+    i = enemy_nb(game->map.map);
+    game->nb_enemy = i;
+    game->enemys = NULL; // Initialiser la liste chaînée à NULL
+    while (i > 0)
+    {
+        enemy = malloc(sizeof(*enemy));
 		if (!enemy)
 			return (0);
-		enemy->x = 0;
-		enemy->y = 0;
-		enemy = enemy->next;
-		i--;
-	}
-	return (1);
+        enemy->x = 0;
+        enemy->y = 0;
+        enemy->next = game->enemys; // Ajouter l'ennemi à la liste chaînée
+        game->enemys = enemy;
+        i--;
+    }
+    return (1);
 }
 
 // initialize the enemy position, in a linked list of enemies
 // and put the enemy on the map
-void	enemy_move(t_game *game)
+void	init_enemy_pos(t_game *game)
 {
-	t_enemy	*enemy;
-	int i;
-	int j;
+    t_enemy	*enemy;
+    int i;
+    int j;
 
-	enemy = &game->enemy;
-	i = 0;
-	while (i < game->map.height / 64)
-	{
-		j = 0;
-		while (j < game->map.width / 64)
-		{
-			if (game->map.map[i][j] == 'D')
-			{
-				enemy->x = i;
-				enemy->y = j;
-				enemy = enemy->next;
-			}
-			j++;
-		}
-		i++;
-	}
+    enemy = game->enemys;
+    while (enemy)
+    {
+        i = 0;
+        while (i < game->map.height / 64)
+        {
+            j = 0;
+            while (j < game->map.width / 64)
+            {
+                if (game->map.map[i][j] == 'D')
+                {
+                    enemy->x = i;
+                    enemy->y = j;
+					enemy = enemy->next;
+                }
+                j++;
+            }
+            i++;
+        }
+    }
+}
+
+// move the enemy one step to the right and one to the left
+void	move_enemy(t_game *game)
+{
+    t_enemy	*enemy;
+
+    enemy = game->enemys;
+    while (enemy)
+    {
+        if (game->map.map[enemy->x][enemy->y + 1] == '0')
+        {
+            game->map.map[enemy->x][enemy->y] = '0';
+            put_back_local(game, enemy->x, enemy->y);
+            enemy->y++;
+            game->map.map[enemy->x][enemy->y] = 'D';
+        }
+        else if (game->map.map[enemy->x][enemy->y - 1] == '0')
+        {
+            game->map.map[enemy->x][enemy->y] = '0';
+            put_back_local(game, enemy->x, enemy->y);
+            enemy->y--;
+            game->map.map[enemy->x][enemy->y] = 'D';
+        }
+        if (game->player.x == enemy->x && game->player.y == enemy->y)
+            end_game(game);
+        enemy = enemy->next;
+    }
+}
+
+void	put_back_local(t_game *game, int x, int y)
+{
+	t_texture	back;
+
+	back.path = "./assets/back.xpm";
+	back.img = mlx_xpm_file_to_image(game->mlx, back.path, &back.width,
+			&back.height);
+	if (!back.img)
+		exit(1);
+	mlx_put_image_to_window(game->mlx, game->win, back.img, y * 64, x * 64);
+	mlx_destroy_image(game->mlx, back.img);
 }

@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:26:05 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/24 14:59:47 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/27 15:07:20 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,25 @@ void	free_tabs(char **tab)
 	free(tab);
 }
 
+void	free_enemys(t_enemy *enemys)
+{
+	t_enemy	*tmp;
+
+	while (enemys)
+	{
+		tmp = enemys;
+		enemys = enemys->next;
+		free(tmp);
+	}
+}
+
 void	end_game(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	free_tabs(game->map.map);
+	if (game->enemys)
+		free_enemys(game->enemys);
 	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:41:48 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/24 14:55:52 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/27 15:07:28 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <time.h>
 
 typedef struct s_pos
 {
@@ -58,9 +59,18 @@ typedef struct s_enemy
 {
 	int			x;
 	int			y;
+	int			hunger;
 	struct s_enemy	*next;
 	t_texture	textures;
 }				t_enemy;
+
+typedef	struct s_fps
+{
+	int			fps;
+	int			frames;
+	int			time;
+	int			last_time;
+}				t_fps;
 
 typedef struct s_game
 {
@@ -73,7 +83,9 @@ typedef struct s_game
 	void		*win;
 	t_map		map;
 	t_enemy		enemy;
+	t_enemy		*enemys;
 	t_pos		pos;
+	t_fps		fps;
 
 }				t_game;
 
@@ -91,6 +103,7 @@ typedef struct s_parse
 	int			width;
 	t_game		game;
 }				t_parse;
+
 
 int				check_map(t_parse *parse);
 int				parsing(int argc, char **argv, t_parse *parse);
@@ -123,13 +136,15 @@ void			end_game(t_game *game);
 void			print_map(t_parse *parse);
 void			idle_anim(t_game *game);
 void			put_idle(t_game *game);
-int				animate(t_game *game);
 void			print_moves(t_game *game);
 int				hooks(t_game *game);
 void			get_player_pos(t_game *game);
 void			put_enemy(t_game *game);
 void			idle_enemy(t_game *game);
 int				init_enemy(t_game *game);
-void			enemy_move(t_game *game);
+void			init_enemy_pos(t_game *game);
+void    		move_enemy(t_game *game);
+void			put_back_local(t_game *game, int x, int y);
+void			free_enemys(t_enemy *enemys);
 
 #endif
