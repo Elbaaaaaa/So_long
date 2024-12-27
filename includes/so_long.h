@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:41:48 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/27 15:07:28 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/27 18:11:16 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_enemy
 {
 	int			x;
 	int			y;
-	int			hunger;
 	struct s_enemy	*next;
 	t_texture	textures;
 }				t_enemy;

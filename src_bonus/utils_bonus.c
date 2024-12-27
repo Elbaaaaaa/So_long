@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:26:05 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/27 15:07:20 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/27 17:38:21 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,26 @@ void	init_textures(t_game *game)
 	put_exit(game);
 }
 
-void	free_tabs(char **tab)
+int	enemy_nb(char **map)
 {
 	int	i;
+	int	j;
+	int	nb;
 
 	i = 0;
-	while (tab[i])
+	nb = 0;
+	while (map[i])
 	{
-		free(tab[i]);
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'D')
+				nb++;
+			j++;
+		}
 		i++;
 	}
-	free(tab);
+	return (nb);
 }
 
 void	free_enemys(t_enemy *enemys)
@@ -58,4 +67,27 @@ void	end_game(t_game *game)
 	if (game->enemys)
 		free_enemys(game->enemys);
 	exit(0);
+}
+
+// initialize the enemy position, in a linked list of enemies
+int	init_enemy(t_game *game)
+{
+	int		i;
+	t_enemy	*enemy;
+
+	i = enemy_nb(game->map.map);
+	game->nb_enemy = i;
+	game->enemys = NULL;
+	while (i > 0)
+	{
+		enemy = malloc(sizeof(*enemy));
+		if (!enemy)
+			return (0);
+		enemy->x = 0;
+		enemy->y = 0;
+		enemy->next = game->enemys;
+		game->enemys = enemy;
+		i--;
+	}
+	return (1);
 }

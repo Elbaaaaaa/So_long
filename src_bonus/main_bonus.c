@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:56:28 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/24 14:43:23 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/27 17:28:18 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	check_suffix(char *str)
 	i = 0;
 	while (str[i])
 		i++;
-	if (str[i - 1] != 'r' || str[i - 2] != 'e' || str[i - 3] != 'b'
-		|| str[i - 4] != '.')
+	if (str[i - 1] != 'r' || str[i - 2] != 'e' || str[i - 3] != 'b' || str[i
+			- 4] != '.')
 		return (0);
 	return (1);
 }

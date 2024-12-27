@@ -6,11 +6,12 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:04:44 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/27 14:59:02 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/27 18:22:46 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
 // animate the player idle position
 void	idle_anim(t_game *game)
 {
@@ -44,21 +45,51 @@ void	put_idle(t_game *game)
 			&idle.height);
 	if (!idle.img)
 		exit(1);
-	mlx_put_image_to_window(game->mlx, game->win, idle.img, game->player.y
-		* 64, game->player.x * 64);
+	mlx_put_image_to_window(game->mlx, game->win, idle.img, game->player.y * 64,
+		game->player.x * 64);
 	mlx_destroy_image(game->mlx, idle.img);
 }
 
 void	print_moves(t_game *game)
 {
-	char *moves;
+	char	*moves;
 
 	moves = ft_itoa(game->player.moves);
 	mlx_string_put(game->mlx, game->win, 20, 20, 0x00FF0000, moves);
 	free(moves);
 }
 
-int hooks(t_game *game)
+// initialize the enemy position, in a linked list of enemies
+// and put the enemy on the map
+void	init_enemy_pos(t_game *game)
+{
+	t_enemy	*enemy;
+	int		i;
+	int		j;
+
+	enemy = game->enemys;
+	while (enemy)
+	{
+		i = 0;
+		while (i < game->map.height / 64)
+		{
+			j = 0;
+			while (j < game->map.width / 64)
+			{
+				if (game->map.map[i][j] == 'D')
+				{
+					enemy->x = i;
+					enemy->y = j;
+					enemy = enemy->next;
+				}
+				j++;
+			}
+			i++;
+		}
+	}
+}
+
+int	hooks(t_game *game)
 {
 	game->fps.frames++;
 	if (game->fps.frames == 1000)
@@ -66,16 +97,15 @@ int hooks(t_game *game)
 	if (game->fps.frames % 70 == 0)
 	{
 		idle_anim(game);
- 		put_idle(game);
-    	print_moves(game);
+		put_idle(game);
+		print_moves(game);
 		idle_enemy(game);
 	}
 	put_enemy(game);
-	printf("FPS: %d\n", game->fps.frames);
 	if (game->fps.frames % 1000 == 0)
 	{
 		put_walls(game);
 		move_enemy(game);
 	}
-    return (0);
+	return (0);
 }
