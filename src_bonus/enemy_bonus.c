@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 18:39:06 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/27 18:18:21 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/30 15:16:51 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,26 +75,27 @@ void	put_enemy(t_game *game)
 void	move_enemy(t_game *game)
 {
 	t_enemy	*enemy;
-
+	
 	enemy = game->enemys;
 	while (enemy)
 	{
-		if (game->map.map[enemy->x][enemy->y + 1] == '0')
+		if (enemy->dir == 1 && game->map.map[enemy->x][enemy->y + 1] == '0')
 		{
 			game->map.map[enemy->x][enemy->y] = '0';
 			put_back_local(game, enemy->x, enemy->y);
 			enemy->y++;
 			game->map.map[enemy->x][enemy->y] = 'D';
 		}
-		else if (game->map.map[enemy->x][enemy->y - 1] == '0')
+		else if (enemy->dir == -1 && game->map.map[enemy->x][enemy->y - 1] == '0')
 		{
 			game->map.map[enemy->x][enemy->y] = '0';
 			put_back_local(game, enemy->x, enemy->y);
 			enemy->y--;
 			game->map.map[enemy->x][enemy->y] = 'D';
 		}
-		if (game->player.x == enemy->x && game->player.y == enemy->y)
-			end_game(game);
+		else
+			enemy->dir *= -1;
+		enemy->index++;
 		enemy = enemy->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:04:44 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/27 18:22:46 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/30 16:56:23 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,21 +91,18 @@ void	init_enemy_pos(t_game *game)
 
 int	hooks(t_game *game)
 {
+	t_enemy	*enemy;
+	
+	enemy = game->enemys;
+	while (enemy)
+	{
+		if (game->player.x == enemy->x && game->player.y == enemy->y)
+			end_game(game);
+		enemy = enemy->next;
+	}
 	game->fps.frames++;
 	if (game->fps.frames == 1000)
 		game->fps.frames = 0;
-	if (game->fps.frames % 70 == 0)
-	{
-		idle_anim(game);
-		put_idle(game);
-		print_moves(game);
-		idle_enemy(game);
-	}
-	put_enemy(game);
-	if (game->fps.frames % 1000 == 0)
-	{
-		put_walls(game);
-		move_enemy(game);
-	}
+	slow_program(game);
 	return (0);
 }

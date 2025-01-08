@@ -30,6 +30,7 @@ SRCS_BONUS = src_bonus/main_bonus.c \
 			 src_bonus/utils_bonus.c \
 			 src_bonus/animation_bonus.c \
 			 src_bonus/enemy_bonus.c \
+			 src_bonus/hooks_bonus.c \
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)

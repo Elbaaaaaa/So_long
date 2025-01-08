@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:41:48 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/27 18:11:16 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/30 17:00:25 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@ typedef struct s_texture
 	char		*path;
 }				t_texture;
 
+typedef struct s_hearts
+{
+	t_texture		*textures;
+	int				nb;
+}				t_hearts;
+
 typedef struct s_player
 {
 	int			x;
@@ -51,7 +57,7 @@ typedef struct s_player
 	int			moves;
 	int			collect;
 	int			exit;
-	int			hp;
+	t_hearts	hearts;
 	t_texture	textures;
 }				t_player;
 
@@ -59,6 +65,9 @@ typedef struct s_enemy
 {
 	int			x;
 	int			y;
+	int			hp;
+	int			dir;
+	int			index;
 	struct s_enemy	*next;
 	t_texture	textures;
 }				t_enemy;
@@ -73,7 +82,6 @@ typedef	struct s_fps
 
 typedef struct s_game
 {
-	int			clock;
 	int			collect;
 	int			exit;
 	int			nb_enemy;
@@ -85,6 +93,7 @@ typedef struct s_game
 	t_enemy		*enemys;
 	t_pos		pos;
 	t_fps		fps;
+	t_hearts	hearts;
 
 }				t_game;
 
@@ -145,5 +154,9 @@ void			init_enemy_pos(t_game *game);
 void    		move_enemy(t_game *game);
 void			put_back_local(t_game *game, int x, int y);
 void			free_enemys(t_enemy *enemys);
+void			slow_program(t_game *game);
+void			put_hearts(t_game *game, int x, int y);
+void			animate_hearts(t_game *game);
+void			put_wall_local(t_game *game, int x, int y);
 
 #endif

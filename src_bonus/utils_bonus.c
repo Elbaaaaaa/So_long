@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:26:05 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/27 17:38:21 by ebella           ###   ########.fr       */
+/*   Updated: 2024/12/30 15:05:39 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	init_textures(t_game *game)
 {
-	game->clock = 0;
 	put_walls(game);
 	put_back(game);
 	idle_enemy(game);
@@ -85,6 +84,7 @@ int	init_enemy(t_game *game)
 			return (0);
 		enemy->x = 0;
 		enemy->y = 0;
+		enemy->dir = 1;
 		enemy->next = game->enemys;
 		game->enemys = enemy;
 		i--;
