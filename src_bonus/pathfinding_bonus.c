@@ -6,13 +6,13 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 12:02:16 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/27 17:26:35 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/10 16:56:26 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-// finds the i and y of the player
+// finds the postion of the player in the map.
 void	player_pos(t_parse *parse)
 {
 	int	i;
@@ -36,7 +36,7 @@ void	player_pos(t_parse *parse)
 	}
 }
 
-// duplicate the map
+// duplicate the map for the pathfinding
 char	**dup_map(t_parse parse)
 {
 	char	**map;
@@ -64,12 +64,13 @@ char	**dup_map(t_parse parse)
 	return (map);
 }
 
-// i will start from the player position and check
-// if there is a path to the exit
-// i will look in foor directions up, down, left, right
-// if i find a wall i dont recurse on it, i recurse on everythig else
-// if i find the exit i return 1
-// if i dont find the exit i return 0
+// recursive function to find the path to the exit
+// starts from the player position and goes to the exit
+// if the player has collected all the collectables
+// if the player is on the exit, remove the exit.
+// if the current position has been visited, return 0.
+// if the current position is a wall, return 0.
+// if all the collectables are collected and there in no exit, return 1.
 int	pathfinding(t_parse *parse, int i, int j)
 {
 	if (i < 0 || j < 0 || i >= parse->lines

@@ -6,12 +6,13 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:32:06 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/27 17:27:07 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/10 16:56:02 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+// finds the position of the backs and render it's textures.
 void	put_back(t_game *game)
 {
 	t_texture	back;
@@ -39,7 +40,7 @@ void	put_back(t_game *game)
 	mlx_destroy_image(game->mlx, back.img);
 }
 
-// if the player press z q s d the initial position of the player will be a back
+// render the player on the window.
 void	put_player(t_game *game)
 {
 	t_texture	player;
@@ -54,6 +55,7 @@ void	put_player(t_game *game)
 	mlx_destroy_image(game->mlx, player.img);
 }
 
+// finds the position of the exit and render it's texture.
 void	put_exit(t_game *game)
 {
 	t_texture	exit;
@@ -79,6 +81,7 @@ void	put_exit(t_game *game)
 	mlx_destroy_image(game->mlx, exit.img);
 }
 
+// finds the position of the collectables and render it's textures.
 void	put_collect(t_game *game)
 {
 	t_texture	collect;
@@ -106,7 +109,7 @@ void	put_collect(t_game *game)
 	mlx_destroy_image(game->mlx, collect.img);
 }
 
-// draw the map on the window
+// finds the position of the walls and render it's textures.
 void	put_walls(t_game *game)
 {
 	t_texture	wall;

@@ -6,12 +6,13 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:26:05 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/30 15:05:39 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/10 17:02:06 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+// initailize all the textures.
 void	init_textures(t_game *game)
 {
 	put_walls(game);
@@ -23,6 +24,7 @@ void	init_textures(t_game *game)
 	put_exit(game);
 }
 
+// counts the number of enemys and returns it.
 int	enemy_nb(char **map)
 {
 	int	i;
@@ -45,6 +47,7 @@ int	enemy_nb(char **map)
 	return (nb);
 }
 
+// free the linked list of enemys.
 void	free_enemys(t_enemy *enemys)
 {
 	t_enemy	*tmp;
@@ -57,6 +60,10 @@ void	free_enemys(t_enemy *enemys)
 	}
 }
 
+// secure the free of the map.
+// secure and window close.
+// secure the free of the mlx.
+// secure the free of the enemys.
 void	end_game(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->win);
@@ -68,7 +75,7 @@ void	end_game(t_game *game)
 	exit(0);
 }
 
-// initialize the enemy position, in a linked list of enemies
+// initialize the enemy position, in a linked list of enemies.
 int	init_enemy(t_game *game)
 {
 	int		i;

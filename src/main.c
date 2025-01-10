@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:56:28 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/25 11:32:39 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/10 15:27:46 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	check_suffix(char *str)
 	return (1);
 }
 
-int	parsing(int argc, char **argv, t_parse *parse)
+int	valid_file(int argc, char **argv, t_parse *parse)
 {
 	if (argc != 2)
 		return (0);
@@ -73,7 +73,7 @@ int	main(int argc, char **argv)
 	t_parse	parse;
 	t_game	game;
 
-	if (!parsing(argc, argv, &parse))
+	if (!valid_file(argc, argv, &parse))
 		return (write(1, "Error, file not found\n", 23), 0);
 	if (!check_map(&parse))
 		return (write(1, "Error, map not loaded correctly\n", 23), 0);

@@ -6,13 +6,13 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 12:55:02 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/30 16:01:32 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/10 17:01:52 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-// return the number of lines in the map and change the value of parse->lines
+// return the number of lines in the map and initialize the lines for parsing.
 int	map_lines(t_parse *parse)
 {
 	int		num_lines;
@@ -32,6 +32,7 @@ int	map_lines(t_parse *parse)
 	return (num_lines);
 }
 
+// return the number of coins in the map and initialize the collect for game.
 int	map_coins(t_parse *parse, t_game *game)
 {
 	int	i;
@@ -55,6 +56,7 @@ int	map_coins(t_parse *parse, t_game *game)
 	return (coins);
 }
 
+// return the width of the map and initialize the width for the parsing.
 int	map_width(t_parse *parse)
 {
 	int	i;
@@ -74,6 +76,7 @@ int	map_width(t_parse *parse)
 	return (max_len);
 }
 
+// initialize the window with the width and height of the map.
 void	init_window(t_game *game)
 {
 	game->mlx = mlx_init();
@@ -85,8 +88,10 @@ void	init_window(t_game *game)
 		exit(1);
 }
 
-// initialize the map height and width with the parse lines and parse length
-// pixel size is 64
+// initialize the game with the parsing and game values.
+// if the map is too big, exit the program.
+// if the enemy is not initialized, exit the program.
+// if the map is too big, exit the program.
 void	init(t_game *game, t_parse *parse)
 {
 	parse->width = map_width(parse);

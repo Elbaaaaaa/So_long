@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:41:48 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/30 17:00:25 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/10 15:26:07 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ typedef struct s_parse
 
 
 int				check_map(t_parse *parse);
-int				parsing(int argc, char **argv, t_parse *parse);
+int				valid_file(int argc, char **argv, t_parse *parse);
 int				check_suffix(char *str);
 int				check_exist(char *str, t_parse *parse);
 int				check_map_rectangle(t_parse *parse);

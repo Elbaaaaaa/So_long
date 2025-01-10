@@ -6,13 +6,13 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:35:35 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/25 11:27:25 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/10 16:56:36 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-// read the file and return an array of strings with the content of the file
+// read the file and store the map in a tab.
 int	check_map(t_parse *parse)
 {
 	char	**map;

@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:56:28 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/27 17:28:18 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/10 17:00:48 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	check_exist(char *str, t_parse *parse)
 	return (1);
 }
 
+// check if the file has the right suffix
 int	check_suffix(char *str)
 {
 	int	i;
@@ -32,13 +33,14 @@ int	check_suffix(char *str)
 	i = 0;
 	while (str[i])
 		i++;
-	if (str[i - 1] != 'r' || str[i - 2] != 'e' || str[i - 3] != 'b' || str[i
-			- 4] != '.')
+	if (str[i - 1] != 'r' || str[i - 2] != 'e' || str[i - 3] != 'b'
+		|| str[i - 4] != '.')
 		return (0);
 	return (1);
 }
 
-int	parsing(int argc, char **argv, t_parse *parse)
+// Uses two functions to check if file is valid.
+int	valid_file(int argc, char **argv, t_parse *parse)
 {
 	if (argc != 2)
 		return (0);
@@ -49,6 +51,7 @@ int	parsing(int argc, char **argv, t_parse *parse)
 	return (1);
 }
 
+// runs diffrent functions to check if the map is valid.
 int	parse_map(t_parse *parse)
 {
 	if (!check_map_rectangle(parse))
@@ -73,7 +76,7 @@ int	main(int argc, char **argv)
 	t_parse	parse;
 	t_game	game;
 
-	if (!parsing(argc, argv, &parse))
+	if (!valid_file(argc, argv, &parse))
 		return (write(1, "Error, file not found\n", 23), 0);
 	if (!check_map(&parse))
 		return (write(1, "Error, map not loaded correctly\n", 23), 0);

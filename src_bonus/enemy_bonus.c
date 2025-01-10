@@ -6,12 +6,13 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 18:39:06 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/30 15:16:51 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/10 16:57:13 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+// free the tab of the map
 void	free_tabs(char **tab)
 {
 	int	i;
@@ -25,6 +26,7 @@ void	free_tabs(char **tab)
 	free(tab);
 }
 
+// initialize the enemy textures.
 void	idle_enemy(t_game *game)
 {
 	static int	i = 0;
@@ -42,8 +44,7 @@ void	idle_enemy(t_game *game)
 		i = 0;
 }
 
-// animate the enemy idle position
-// go trough the linked list of enemies and put the enemy on the map
+// finds the position of the enemy and animate it.
 void	put_enemy(t_game *game)
 {
 	t_texture	enemy;
@@ -71,11 +72,11 @@ void	put_enemy(t_game *game)
 	mlx_destroy_image(game->mlx, enemy.img);
 }
 
-// move the enemy one step to the right and one to the left 
+// Move the enemy until it hits a wall
 void	move_enemy(t_game *game)
 {
 	t_enemy	*enemy;
-	
+
 	enemy = game->enemys;
 	while (enemy)
 	{
@@ -86,7 +87,8 @@ void	move_enemy(t_game *game)
 			enemy->y++;
 			game->map.map[enemy->x][enemy->y] = 'D';
 		}
-		else if (enemy->dir == -1 && game->map.map[enemy->x][enemy->y - 1] == '0')
+		else if (enemy->dir == -1 && game->map.map[enemy->x][enemy->y
+			- 1] == '0')
 		{
 			game->map.map[enemy->x][enemy->y] = '0';
 			put_back_local(game, enemy->x, enemy->y);
@@ -100,6 +102,7 @@ void	move_enemy(t_game *game)
 	}
 }
 
+// Used to put a back on the position of an enemy, so i can move it.
 void	put_back_local(t_game *game, int x, int y)
 {
 	t_texture	back;

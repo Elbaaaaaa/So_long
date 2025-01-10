@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:04:44 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/30 16:56:23 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/10 16:59:28 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	idle_anim(t_game *game)
 		i = 0;
 }
 
+// render the animated player idle position.
 void	put_idle(t_game *game)
 {
 	t_texture	idle;
@@ -50,6 +51,7 @@ void	put_idle(t_game *game)
 	mlx_destroy_image(game->mlx, idle.img);
 }
 
+// print the number of moves on the window.
 void	print_moves(t_game *game)
 {
 	char	*moves;
@@ -59,8 +61,7 @@ void	print_moves(t_game *game)
 	free(moves);
 }
 
-// initialize the enemy position, in a linked list of enemies
-// and put the enemy on the map
+// initialize the enemy positions in a linked list of enemies.
 void	init_enemy_pos(t_game *game)
 {
 	t_enemy	*enemy;
@@ -89,10 +90,11 @@ void	init_enemy_pos(t_game *game)
 	}
 }
 
+// the loop of all the events in the game.
 int	hooks(t_game *game)
 {
 	t_enemy	*enemy;
-	
+
 	enemy = game->enemys;
 	while (enemy)
 	{
@@ -103,6 +105,7 @@ int	hooks(t_game *game)
 	game->fps.frames++;
 	if (game->fps.frames == 1000)
 		game->fps.frames = 0;
+	print_moves(game);
 	slow_program(game);
 	return (0);
 }

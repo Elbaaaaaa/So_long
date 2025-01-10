@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 22:50:20 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/27 17:26:55 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/10 17:00:56 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 // check if the player can move to the next position
 // if the next position is a wall, the player can't move
+// if the next position is a collectable, the player collects it.
+// if all the collectables are equal to 0 and the player is on the exit
+// the player wins the game.
 int	check_move(t_game *game, int x, int y)
 {
 	if (game->map.map[x][y] == '1')
@@ -50,6 +53,8 @@ void	move_player(t_game *game, int x, int y)
 	}
 }
 
+// listen to the key pressed by the player,
+// and moves the character to the position
 int	key_hook(int keycode, t_game *game)
 {
 	if (keycode == 119)
