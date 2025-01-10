@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:41:48 by ebella            #+#    #+#             */
-/*   Updated: 2025/01/10 15:26:07 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/10 18:26:18 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,6 @@ typedef struct s_texture
 	char		*path;
 }				t_texture;
 
-typedef struct s_hearts
-{
-	t_texture		*textures;
-	int				nb;
-}				t_hearts;
-
 typedef struct s_player
 {
 	int			x;
@@ -57,7 +51,6 @@ typedef struct s_player
 	int			moves;
 	int			collect;
 	int			exit;
-	t_hearts	hearts;
 	t_texture	textures;
 }				t_player;
 
@@ -65,7 +58,6 @@ typedef struct s_enemy
 {
 	int			x;
 	int			y;
-	int			hp;
 	int			dir;
 	int			index;
 	struct s_enemy	*next;
@@ -76,8 +68,6 @@ typedef	struct s_fps
 {
 	int			fps;
 	int			frames;
-	int			time;
-	int			last_time;
 }				t_fps;
 
 typedef struct s_game
@@ -93,7 +83,6 @@ typedef struct s_game
 	t_enemy		*enemys;
 	t_pos		pos;
 	t_fps		fps;
-	t_hearts	hearts;
 
 }				t_game;
 

@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:56:28 by ebella            #+#    #+#             */
-/*   Updated: 2025/01/10 17:00:48 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/10 18:34:00 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int	parse_map(t_parse *parse)
 		return (free_tabs(parse->map), 0);
 	player_pos(parse);
 	if (!pathfinding(parse, parse->player_x, parse->player_y))
-		return (0);
+		return (free_tabs(parse->game.map.visited),
+			free_tabs(parse->map), 0);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 12:55:02 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/23 16:57:54 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/10 18:26:25 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,5 @@ void	init(t_game *game, t_parse *parse)
 	game->player.moves = 0;
 	game->player.collect = 0;
 	game->player.exit = 0;
-	game->player.hp = 0;
 	game->map.map = parse->map;
 }
