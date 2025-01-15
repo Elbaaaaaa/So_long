@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:09:39 by ebella            #+#    #+#             */
-/*   Updated: 2025/01/15 17:02:06 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/15 17:20:07 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,15 @@
 // I slow diffrent actions in the game, so it renders properly.
 void	slow_program(t_game *game)
 {
-	if (game->fps.frames % 300 == 0)
+	if (game->fps.frames % 1000 == 0)
 	{
 		idle_anim(game);
 		put_idle(game);
 		idle_enemy(game);
 	}
 	put_enemy(game);
-	if (game->fps.frames % 50 == 0)
+	if (game->fps.frames % 1300 == 0)
 	{
-		printf("frames: %d\n", game->fps.frames);
 		move_enemy(game);
 		put_wall_local(game, 0, 0);
 	}
