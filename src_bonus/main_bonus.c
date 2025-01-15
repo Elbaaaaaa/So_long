@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:56:28 by ebella            #+#    #+#             */
-/*   Updated: 2025/01/15 09:49:37 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/15 13:45:02 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int	main(int argc, char **argv)
 		return (write(1, "Error, file not found\n", 23), 0);
 	if (!check_map(&parse))
 		return (write(1, "Error, map not loaded correctly\n", 23), 0);
+	parse.game.exit_reachable = 0;
 	if (!parse.map || !parse_map(&parse))
 		return (write(1, "Error, map not valid\n", 22), 0);
 	init(&game, &parse);
