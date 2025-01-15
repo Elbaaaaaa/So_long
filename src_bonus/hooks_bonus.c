@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:09:39 by ebella            #+#    #+#             */
-/*   Updated: 2025/01/10 16:59:47 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/15 13:09:03 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	slow_program(t_game *game)
 		idle_enemy(game);
 	}
 	put_enemy(game);
-	if (game->fps.frames % 700 == 0)
+	if (game->fps.frames % 1000 == 0)
 	{
 		move_enemy(game);
 		put_wall_local(game, 0, 0);
@@ -38,7 +38,7 @@ void	put_wall_local(t_game *game, int x, int y)
 	back.img = mlx_xpm_file_to_image(game->mlx, back.path, &back.width,
 			&back.height);
 	if (!back.img)
-		exit(1);
+		end_game(game);
 	mlx_put_image_to_window(game->mlx, game->win, back.img, y * 64, x * 64);
 	mlx_destroy_image(game->mlx, back.img);
 }

@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:04:44 by ebella            #+#    #+#             */
-/*   Updated: 2025/01/10 16:59:28 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/15 11:20:02 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	idle_anim(t_game *game)
 	i++;
 	if (i == 7)
 		i = 0;
+	if (!game->player.textures.path)
+		end_game(game);
 }
 
 // render the animated player idle position.
@@ -45,7 +47,7 @@ void	put_idle(t_game *game)
 	idle.img = mlx_xpm_file_to_image(game->mlx, idle.path, &idle.width,
 			&idle.height);
 	if (!idle.img)
-		exit(1);
+		end_game(game);
 	mlx_put_image_to_window(game->mlx, game->win, idle.img, game->player.y * 64,
 		game->player.x * 64);
 	mlx_destroy_image(game->mlx, idle.img);

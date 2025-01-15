@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 12:02:16 by ebella            #+#    #+#             */
-/*   Updated: 2025/01/10 18:58:15 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/15 13:04:14 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ int	pathfinding(t_parse *parse, int i, int j)
 	if (i < 0 || j < 0 || i >= parse->lines
 		|| j >= ft_strlen(parse->game.map.visited[0]))
 		return (0);
-	if (parse->exit == 0 && parse->game.collect == 0)
+	if (parse->game.exit_reachable == 1 && parse->game.collect == 0)
 		return (free_tabs(parse->game.map.visited), 1);
 	if (parse->game.map.visited[i][j] == 'E')
-		parse->exit--;
+		parse->game.exit_reachable = 1;
 	if (parse->game.map.visited[i][j] == '1'
 		|| parse->game.map.visited[i][j] == 'X'
 		|| parse->game.map.visited[i][j] == 'D'

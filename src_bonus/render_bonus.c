@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:32:06 by ebella            #+#    #+#             */
-/*   Updated: 2025/01/10 16:56:02 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/15 11:19:09 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	put_back(t_game *game)
 	back.img = mlx_xpm_file_to_image(game->mlx, back.path, &back.width,
 			&back.height);
 	if (!back.img)
-		exit(1);
+		end_game(game);
 	i = 0;
 	while (i < game->map.height / 64)
 	{
@@ -49,7 +49,7 @@ void	put_player(t_game *game)
 	player.img = mlx_xpm_file_to_image(game->mlx, player.path, &player.width,
 			&player.height);
 	if (!player.img)
-		exit(1);
+		end_game(game);
 	mlx_put_image_to_window(game->mlx, game->win, player.img, game->player.y
 		* 64, game->player.x * 64);
 	mlx_destroy_image(game->mlx, player.img);
@@ -63,6 +63,8 @@ void	put_exit(t_game *game)
 	int			j;
 
 	exit.path = "./assets/exit.xpm";
+	if (!exit.path)
+		end_game(game);
 	exit.img = mlx_xpm_file_to_image(game->mlx, exit.path, &exit.width,
 			&exit.height);
 	i = 0;
@@ -92,7 +94,7 @@ void	put_collect(t_game *game)
 	collect.img = mlx_xpm_file_to_image(game->mlx, collect.path, &collect.width,
 			&collect.height);
 	if (!collect.img)
-		exit(1);
+		end_game(game);
 	i = 0;
 	while (i < game->map.height / 64)
 	{
@@ -120,7 +122,7 @@ void	put_walls(t_game *game)
 	wall.img = mlx_xpm_file_to_image(game->mlx, wall.path, &wall.width,
 			&wall.height);
 	if (!wall.img)
-		exit(1);
+		end_game(game);
 	i = 0;
 	while (game->map.map[i])
 	{

@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:41:48 by ebella            #+#    #+#             */
-/*   Updated: 2025/01/10 18:26:18 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/15 12:38:25 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_game
 {
 	int			collect;
 	int			exit;
+	int		exit_reachable;
 	int			nb_enemy;
 	t_player	player;
 	void		*mlx;

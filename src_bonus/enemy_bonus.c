@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 18:39:06 by ebella            #+#    #+#             */
-/*   Updated: 2025/01/10 16:57:13 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/15 11:20:40 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	idle_enemy(t_game *game)
 	i++;
 	if (i == 4)
 		i = 0;
+	if (!game->enemy.textures.path)
+		end_game(game);
 }
 
 // finds the position of the enemy and animate it.
@@ -55,7 +57,7 @@ void	put_enemy(t_game *game)
 	enemy.img = mlx_xpm_file_to_image(game->mlx, enemy.path, &enemy.width,
 			&enemy.height);
 	if (!enemy.img)
-		exit(1);
+		end_game(game);
 	i = 0;
 	while (i < game->map.height / 64)
 	{
@@ -111,7 +113,7 @@ void	put_back_local(t_game *game, int x, int y)
 	back.img = mlx_xpm_file_to_image(game->mlx, back.path, &back.width,
 			&back.height);
 	if (!back.img)
-		exit(1);
+		end_game(game);
 	mlx_put_image_to_window(game->mlx, game->win, back.img, y * 64, x * 64);
 	mlx_destroy_image(game->mlx, back.img);
 }
