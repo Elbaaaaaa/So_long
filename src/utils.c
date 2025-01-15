@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:26:05 by ebella            #+#    #+#             */
-/*   Updated: 2024/12/23 14:30:51 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/15 16:53:37 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	free_tabs(char **tab)
 	free(tab);
 }
 
-void	end_game(t_game *game)
+int	end_game(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);

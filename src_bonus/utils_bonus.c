@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:26:05 by ebella            #+#    #+#             */
-/*   Updated: 2025/01/10 17:02:06 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/15 16:58:00 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,19 @@ void	free_enemys(t_enemy *enemys)
 // secure and window close.
 // secure the free of the mlx.
 // secure the free of the enemys.
-void	end_game(t_game *game)
+int	end_game(t_game *game)
 {
-	mlx_destroy_window(game->mlx, game->win);
-	mlx_destroy_display(game->mlx);
-	free(game->mlx);
+	if (game->mlx && game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx)
+	{
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
 	free_tabs(game->map.map);
 	if (game->enemys)
 		free_enemys(game->enemys);
+	write (1, "Game Over\n", 10);
 	exit(0);
 }
 

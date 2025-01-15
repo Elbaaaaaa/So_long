@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:04:44 by ebella            #+#    #+#             */
-/*   Updated: 2025/01/15 11:20:02 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/15 16:45:30 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ int	hooks(t_game *game)
 		game->fps.frames = 0;
 	print_moves(game);
 	slow_program(game);
+	mlx_hook(game->win, DestroyNotify, 0, end_game, game);
 	return (0);
 }

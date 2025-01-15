@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:56:28 by ebella            #+#    #+#             */
-/*   Updated: 2025/01/15 13:16:53 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/15 16:50:03 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	main(int argc, char **argv)
 		return (write(1, "Error, map not valid\n", 22), 0);
 	init(&game, &parse);
 	init_window(&game);
+	mlx_hook(game.win, DestroyNotify, 0, end_game, &game);
 	init_textures(&game);
 	mlx_key_hook(game.win, key_hook, &game);
 	mlx_loop(game.mlx);

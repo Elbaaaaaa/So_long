@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:41:48 by ebella            #+#    #+#             */
-/*   Updated: 2025/01/15 13:28:46 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/15 16:51:41 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../lib/libft/libft.h"
 # include "../lib/mlx/mlx.h"
+# include "X11/X.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -128,7 +129,7 @@ void				move_player(t_game *game, int x, int y);
 void				put_exit(t_game *game);
 void				init_textures(t_game *game);
 void				free_tabs(char **tab);
-void				end_game(t_game *game);
+int					end_game(t_game *game);
 void				idle_anim(t_game *game);
 void				put_idle(t_game *game);
 void				print_moves(t_game *game);
