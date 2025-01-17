@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 12:55:02 by ebella            #+#    #+#             */
-/*   Updated: 2025/01/15 13:17:09 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/17 17:20:32 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,19 @@ void	init_window(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
+	{
+		free(game->mlx);
+		free_tabs(game->map.map);
 		exit(1);
+	}
 	game->win = mlx_new_window(game->mlx, game->map.width, game->map.height,
 			"so_long");
 	if (!game->win)
+	{
+		free(game->mlx);
+		free_tabs(game->map.map);
 		exit(1);
+	}
 }
 
 // initialize the map height and width with the parse lines and parse length

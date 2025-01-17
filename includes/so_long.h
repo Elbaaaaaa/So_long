@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:41:48 by ebella            #+#    #+#             */
-/*   Updated: 2025/01/15 16:51:41 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/17 11:50:00 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,6 @@
 # include <stdlib.h>
 # include <time.h>
 # include <unistd.h>
-
-typedef struct s_pos
-{
-	int				px_x;
-	int				px_y;
-}					t_pos;
 
 typedef struct s_map
 {
@@ -83,7 +77,6 @@ typedef struct s_game
 	t_map			map;
 	t_enemy			enemy;
 	t_enemy			*enemys;
-	t_pos			pos;
 	t_fps			fps;
 
 }					t_game;
