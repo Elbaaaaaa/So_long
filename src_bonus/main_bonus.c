@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:56:28 by ebella            #+#    #+#             */
-/*   Updated: 2025/01/15 16:44:58 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/21 11:41:50 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,10 @@ int	main(int argc, char **argv)
 		return (write(1, "Error, map not valid\n", 22), 0);
 	init(&game, &parse);
 	init_window(&game);
+	if (!init_enemy(&game))
+		return (write(1, "Error, enemy not initialized\n", 29),
+			free_tabs(parse.map), exit(1), 1);
+	init_enemy_pos(&game);
 	init_textures(&game);
 	mlx_key_hook(game.win, key_hook, &game);
 	mlx_loop_hook(game.mlx, hooks, &game);

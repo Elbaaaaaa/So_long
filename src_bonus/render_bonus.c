@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:32:06 by ebella            #+#    #+#             */
-/*   Updated: 2025/01/15 11:19:09 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/21 10:53:21 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ void	put_exit(t_game *game)
 	int			j;
 
 	exit.path = "./assets/exit.xpm";
-	if (!exit.path)
-		end_game(game);
 	exit.img = mlx_xpm_file_to_image(game->mlx, exit.path, &exit.width,
 			&exit.height);
+	if (!exit.img)
+		end_game(game);
 	i = 0;
 	while (i < game->map.height / 64)
 	{

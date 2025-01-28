@@ -6,7 +6,7 @@
 /*   By: ebella <ebella@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 12:55:02 by ebella            #+#    #+#             */
-/*   Updated: 2025/01/17 17:21:51 by ebella           ###   ########.fr       */
+/*   Updated: 2025/01/21 11:43:19 by ebella           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,4 @@ void	init(t_game *game, t_parse *parse)
 	game->player.collect = 0;
 	game->player.exit = 0;
 	game->map.map = parse->map;
-	if (init_enemy(game) == 0)
-		return (write(1, "Error, enemy not initialized\n", 29),
-			free_tabs(parse->map), exit(1));
-	init_enemy_pos(game);
 }
