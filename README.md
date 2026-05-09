@@ -94,5 +94,5 @@ sudo apt-get install -y xorg libxext-dev libx11-dev
 
 ### Auteur
 
-- **ebella** — Étudiant(e) 42
+- **ebella** — Étudiant 42
 
